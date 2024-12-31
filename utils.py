@@ -45,3 +45,17 @@ def get_dict_keys(func):
             ]
             return keys
     return []
+
+
+def write_to_csv(file, data):
+    # Check if file exists to write the header only once
+  
+    file_exists = os.path.exists(file)
+    
+    with open(file, mode='a', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=list(data.keys()))
+        if not file_exists:
+            writer.writeheader()  # Write headers only once
+        writer.writerow({**data})
+
+ 

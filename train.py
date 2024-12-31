@@ -38,14 +38,17 @@ class Trainer(ABC):
     
     
    
-class test(Trainer):
+class Test(Trainer):
     def evaluate(self, x):
         return {"accuracy": 0.95, "loss": 0.05}
      
 
         
 
-ss = test()
-print(ss.evaluate("ramzey"))
-print(ss.evaluation_keys)
+ss = Test()
+
+
+# Example usage
+
+
 
