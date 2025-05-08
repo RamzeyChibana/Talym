@@ -7,14 +7,21 @@ import inspect
 
 
 def save_args(args, filename='args.json'):
-    with open(filename, 'w') as f:
-        json.dump(vars(args), f, indent=4)
+    
+    if isinstance(args,dict):
+        with open(filename, 'w') as f:
+            json.dump(args, f, indent=4)
+    elif isinstance(args,argparse.Namespace):
+        with open(filename, 'w') as f:
+            json.dump(vars(args), f, indent=4)
+    else :
+        raise TypeError("args must be either dict or argparse.Namsespace")
 
 
 def load_args(filename='args.json'):
     with open(filename, 'r') as f:
         args_dict = json.load(f)
-    return argparse.Namespace(**args_dict)
+    return args_dict
 
 def check_return_dict(func):
     """Decorator to enforce the return type of a function to be a dict."""
